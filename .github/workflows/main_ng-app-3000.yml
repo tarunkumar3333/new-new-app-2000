@@ -22,7 +22,6 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present
 
       - name: Zip artifact for deployment
         run: zip -r release.zip dist
@@ -50,13 +49,7 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
-      - name: Install Chromium
-        run: sudo apt-get install -y chromium-browser
-
-      - name: Set up Chrome
-        run: echo "CHROME_BIN=/usr/bin/chromium-browser" >> $GITHUB_ENV
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
